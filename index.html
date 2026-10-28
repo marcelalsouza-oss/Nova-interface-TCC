@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conect60+ | Exercícios para a terceira idade</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<header class="top">
+  <a class="logo" href="#" data-go="home" aria-label="Conect60+, página inicial">CONECT60+</a>
+  <nav class="top-actions" aria-label="Principal">
+    <button class="btn btn-sm" id="btn-enter-top" data-open="login">Entrar</button>
+    <button class="icon-btn" id="btn-profile" data-open="profile" aria-label="Abrir meu perfil" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.5-6 8-6s7 1.5 8 6"/></svg>
+    </button>
+    <button class="btn btn-sm btn-ghost" id="btn-logout" hidden>Sair</button>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- HOME -->
+  <section class="view is-active" id="view-home" aria-labelledby="h-home">
+    <div class="hero">
+      <div class="hero-text">
+        <h1 id="h-home">Movimento e cuidado, <br>no seu ritmo.</h1>
+        <p>Aulas simples de exercícios para a terceira idade, feitas por fisioterapeutas de alto nível, direto na sua casa.</p>
+        <div class="cta">
+          <button class="btn" data-open="signup">Cadastre-se</button>
+          <button class="btn btn-outline" data-open="login">Entrar</button>
+        </div>
+      </div>
+      <div class="hero-img" role="img" aria-label="Fisioterapeuta orientando uma pessoa idosa em um exercício"></div>
+    </div>
+    <section class="about" aria-labelledby="h-about">
+      <h2 id="h-about">Sobre o Conect60+</h2>
+      <p>O site busca entregar modelos de exercícios simples para a terceira idade, utilizando a tecnologia para promover o combate ao sedentarismo. Com aulas desenvolvidas por fisioterapeutas de alto nível.</p>
+    </section>
+  </section>
+
+  <!-- HOME DO IDOSO -->
+  <section class="view" id="view-elder" aria-labelledby="h-elder">
+    <div class="banner"><h1 id="h-elder">Olá, <span class="user-name">bem-vindo</span>!</h1></div>
+    <div class="content">
+      <h2 class="tag">Suas aulas</h2>
+      <ul class="grid lessons" id="lessons"></ul>
+      <h2 class="tag">Exercícios</h2>
+      <ul class="grid tiles" id="tiles"></ul>
+    </div>
+  </section>
+
+  <!-- HOME DO PROFISSIONAL -->
+  <section class="view" id="view-pro" aria-labelledby="h-pro">
+    <div class="banner"><h1 id="h-pro">Olá, <span class="user-name">profissional</span>!</h1></div>
+    <div class="content">
+      <div class="publish">
+        <h2>Publicar atividades</h2>
+        <label class="btn btn-outline upload">
+          Publique suas atividades
+          <input type="file" id="file-up" accept="video/*,image/*" multiple>
+        </label>
+        <ul class="published" id="published" aria-live="polite"></ul>
+      </div>
+      <h2 class="tag">Quadros</h2>
+      <ul class="grid lessons" id="boards"></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <strong class="logo light">CONECT60+</strong>
+  <p>Conheça nosso trabalho</p>
+  <p>Entre em contato</p>
+</footer>
+
+<!-- DIALOGS (formulários só aparecem ao clicar) -->
+<dialog id="dlg-signup" aria-labelledby="t-signup">
+  <form method="dialog" class="card" id="f-signup" novalidate>
+    <button type="button" class="close" data-close aria-label="Fechar">×</button>
+    <h2 id="t-signup">Cadastre-se</h2>
+    <p class="err" role="alert" aria-live="assertive"></p>
+    <label>Nome completo<input name="nome" autocomplete="name" required></label>
+    <div class="pro-only" hidden>
+      <label>E-mail<input name="email" type="email" autocomplete="email"></label>
+    </div>
+    <label>Telefone<input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label>
+    <label>Senha<input name="senha" type="password" autocomplete="new-password" minlength="6" required></label>
+    <div class="pro-only" hidden>
+      <label>Número do Crefito<input name="crefito"></label>
+    </div>
+    <button class="btn" type="submit">Cadastrar-se</button>
+    <button type="button" class="link" id="toggle-pro" aria-pressed="false">Entre como profissional de saúde</button>
+    <button type="button" class="link" data-open="login">Já tenho conta</button>
+  </form>
+</dialog>
+
+<dialog id="dlg-login" aria-labelledby="t-login">
+  <form method="dialog" class="card" id="f-login" novalidate>
+    <button type="button" class="close" data-close aria-label="Fechar">×</button>
+    <h2 id="t-login">Entrar</h2>
+    <p class="err" role="alert" aria-live="assertive"></p>
+    <label>Telefone<input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label>
+    <label>Senha<input name="senha" type="password" autocomplete="current-password" required></label>
+    <button class="btn" type="submit">Entrar</button>
+    <button type="button" class="link" data-open="reset">Esqueceu a senha?</button>
+    <button type="button" class="link" data-open="signup">Criar conta</button>
+  </form>
+</dialog>
+
+<dialog id="dlg-reset" aria-labelledby="t-reset">
+  <form method="dialog" class="card" id="f-reset" novalidate>
+    <button type="button" class="close" data-close aria-label="Fechar">×</button>
+    <h2 id="t-reset">Redefinir senha</h2>
+    <p class="err" role="alert" aria-live="assertive"></p>
+    <label>Telefone<input name="tel" type="tel" inputmode="tel" required></label>
+    <label>Nova senha<input name="senha" type="password" minlength="6" autocomplete="new-password" required></label>
+    <button class="btn" type="submit">Alterar senha</button>
+  </form>
+</dialog>
+
+<!-- PERFIL (pop-up) -->
+<dialog id="dlg-profile" aria-labelledby="t-profile" class="wide">
+  <form method="dialog" class="card profile" id="f-profile" novalidate>
+    <button type="button" class="close" data-close aria-label="Fechar">×</button>
+    <h2 id="t-profile" class="bar">Perfil</h2>
+    <p class="err" role="alert" aria-live="assertive"></p>
+    <div class="profile-body">
+      <div class="avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.5-6 8-6s7 1.5 8 6"/></svg></div>
+      <div class="fields">
+        <label>Nome completo<input name="nome" autocomplete="name"></label>
+        <label>Telefone para contato<input name="tel" type="tel" autocomplete="tel"></label>
+        <label class="elder-only">Senha<input name="senha" type="password" autocomplete="new-password" placeholder="Deixe vazio para manter"></label>
+        <label class="pro-only">Título profissional<input name="titulo" placeholder="Ex.: Fisioterapeuta, Crefito 0000"></label>
+        <label class="pro-only">Resumo profissional<textarea name="resumo" rows="3"></textarea></label>
+        <button class="btn" type="submit">Salvar alterações</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
